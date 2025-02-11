@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router, RouterLink} from '@angular/router';
 import { map, of, switchMap } from 'rxjs';
 import { Group } from '../../model/group';
@@ -29,14 +29,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './group-edit.component.css'
 })
 export class GroupEditComponent implements OnInit {
-  group!: Group;
-  feedback: any = {};
+  private route: ActivatedRoute = inject(ActivatedRoute);
+  private router: Router = inject(Router);
+  private http: HttpClient = inject(HttpClient);
+  public group!: Group;
+  public feedback: any = {};
 
-  constructor(private route: ActivatedRoute, private router: Router,
-              private http: HttpClient) {
-  }
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.route.params.pipe(
       map((p: Params) => p['id']),
       switchMap(id => {
@@ -56,7 +55,7 @@ export class GroupEditComponent implements OnInit {
     });
   }
 
-  save(): void {
+  public save(): void {
     const id: number | null = this.group.id;
     const method: 'put' | 'post' = id ? 'put' : 'post';
 
@@ -73,15 +72,15 @@ export class GroupEditComponent implements OnInit {
     });
   }
 
-  async cancel(): Promise<void> {
+  public async cancel(): Promise<void> {
     await this.router.navigate(['/groups']);
   }
 
-  addEvent(): void {
+  public addEvent(): void {
     this.group.events.push(new Event());
   }
 
-  removeEvent(index: number): void {
+  public removeEvent(index: number): void {
     this.group.events.splice(index, 1);
   }
 }
