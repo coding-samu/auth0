@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Group } from '../model/group';
+import { Group } from '../../model/group';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';

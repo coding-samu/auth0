@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router, RouterLink} from '@angular/router';
 import { map, of, switchMap } from 'rxjs';
-import { Group } from '../model/group';
-import { Event } from '../model/event';
+import { Group } from '../../model/group';
+import { Event } from '../../model/event';
 import { HttpClient } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
