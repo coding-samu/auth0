@@ -5,6 +5,8 @@ Spring Boot and Angular 19 Auth0 implementation
 
 ### Backend
 
+#### Auth0
+
 Firstly you need to create an Auth0 account and create a new application, if you have installed Auth0 CLI you can use the following command:
 
 ```bash
@@ -25,6 +27,21 @@ Or in windows you can create a `.okta.env.bat` file in the root of the project w
 set OKTA_OAUTH2_ISSUER=https://<your-auth0-domain>/
 set OKTA_OAUTH2_CLIENT_ID=<your-client-id>
 set OKTA_OAUTH2_CLIENT_SECRET=<your-client-secret>
+```
+
+#### Database
+
+You need to create a PostgreSQL database (also you can configure another database on your own), you can modify the `application.properties` file in the `src/main/resources` folder with the following content:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/DATABASE_NAME
+spring.datasource.username=POSTGRES_USER
+spring.datasource.password=POSTGRES_PASSWORD
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# JPA settings
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=create
 ```
 
 ## Running the project
